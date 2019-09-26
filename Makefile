@@ -18,5 +18,8 @@ logf:
 
 run-rtp:
 	docker run -d --net host  \
-	 --env RUN_PARAM="-f -l 192.168.40.72 -s udp:192.168.40.72:12221 -A hq.wellcloud.cc -F -m 17912 -M 17951 -L 20000 -d ERR" \
-	 --name rtpproxy  registry:5000/wecloud/rtpproxy:2.2.10
+	 --env RUN_PARAM="-f -l 0.0.0.0  -s udp:192.168.40.72:12221 -A 101.229.81.32 -F -m 18000 -M 18019 -L 20000 -d DBUG" \
+	 --name rtpproxy  registry:5000/wecloud/rtpproxy:2.2.7
+restart-rtp:
+	docker rm -f rtpproxy
+	make run-rtp
